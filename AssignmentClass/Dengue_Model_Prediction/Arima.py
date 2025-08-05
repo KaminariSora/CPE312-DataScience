@@ -14,9 +14,9 @@ test = df.iloc[-12:]   # Test on the last 12 months
 
 # Separate the target variable (Total) and exogenous variables (Tmax, Tmin, AvgRain)
 y_train = train['Total']
-X_train = train[['Tmax', 'Tmin', 'AvgRain']]
+X_train = train[['datesick_month', 'AvgRain', 'Tmax', 'Tmin', 'datesick_date', 'datesick_year']]
 y_test = test['Total']
-X_test = test[['Tmax', 'Tmin', 'AvgRain']]
+X_test = test[['datesick_month', 'AvgRain', 'Tmax', 'Tmin', 'datesick_date', 'datesick_year']]
 
 # Fit the SARIMAX model
 model = SARIMAX(y_train, exog=X_train, order=(1, 1, 1), seasonal_order=(1, 1, 1, 12))

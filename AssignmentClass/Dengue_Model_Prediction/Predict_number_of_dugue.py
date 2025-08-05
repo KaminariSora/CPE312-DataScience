@@ -5,6 +5,8 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 import matplotlib.pyplot as plt
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+import numpy as np
 
 # Load the dataset
 data = pd.read_csv('AssignmentClass/Dengue_Model_Prediction/pivot_output.csv')
@@ -97,9 +99,23 @@ print(f"\nPredicted Dengue Cases in {new_data['province'].iloc[0]} for Month {ne
 
 # Evaluate the model
 y_pred = best_rf_regressor.predict(X_test)
+
+# Mean Squared Error
 mse = mean_squared_error(y_test, y_pred)
+
+# Mean Absolute Error
+mae = mean_absolute_error(y_test, y_pred)
+
+# Root Mean Squared Error
+rmse = np.sqrt(mse)
+
+# R-squared
 r2 = r2_score(y_test, y_pred)
-print(f"Mean Squared Error: {mse:.2f}")
+
+# Print evaluation metrics
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
 print(f"R-squared: {r2:.2f}")
 
 # Feature Importance (Optional)
